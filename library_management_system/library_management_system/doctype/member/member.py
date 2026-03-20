@@ -27,4 +27,4 @@ class Member(Document):
 			frappe.throw("Outstanding debt cannot be negative")
 
 		if debt > 500:
-			frappe.throw("Oustanding debt cannot exceed KES 500")
+			frappe.throw("Outstanding debt cannot exceed KES 500")
