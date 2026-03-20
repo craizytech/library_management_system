@@ -1,7 +1,7 @@
 # Copyright (c) 2026, Eammon Kiprotich and contributors
 # For license information, please see license.txt
 
-# import frappe
+import frappe
 from frappe.model.document import Document
 
 
@@ -15,10 +15,20 @@ class Book(Document):
 		from frappe.types import DF
 
 		author: DF.Data
-		available_quantity: DF.Data
+		available_quantity: DF.Int
 		isbn: DF.Data | None
 		title: DF.Data
-		total_quantity: DF.Data
+		total_quantity: DF.Int
 	# end: auto-generated types
 
-	pass
+	def validate(self):
+		if self.available_quantity > self.total_quantity:
+			frappe.throw("Available quantity cannot exceed total quantity")
+			
+		if self.available_quantity < 0:
+			frappe.throw("Available quantity cannot be negative")
+			
+	def before_insert(self):
+		if self.available_quantity is None:
+			self.available_quantity = self.total_quantity
+	
