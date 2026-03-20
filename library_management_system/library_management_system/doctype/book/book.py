@@ -22,13 +22,14 @@ class Book(Document):
 	# end: auto-generated types
 
 	def validate(self):
-		if self.available_quantity > self.total_quantity:
+		if not self.available_quantity:
+			self.available_quantity = self.total_quantity
+
+		available = int(self.available_quantity)
+		total = int(self.total_quantity)
+
+		if available > total:
 			frappe.throw("Available quantity cannot exceed total quantity")
 			
-		if self.available_quantity < 0:
+		if available < 0:
 			frappe.throw("Available quantity cannot be negative")
-			
-	def before_insert(self):
-		if self.available_quantity is None:
-			self.available_quantity = self.total_quantity
-	
