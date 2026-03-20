@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 
 
@@ -29,7 +30,7 @@ class Book(Document):
 		total = int(self.total_quantity)
 
 		if available > total:
-			frappe.throw("Available quantity cannot exceed total quantity")
+			frappe.throw(_("Available quantity cannot exceed total quantity"))
 
 		if available < 0:
-			frappe.throw("Available quantity cannot be negative")
+			frappe.throw(_("Available quantity cannot be negative"))

@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 
 
@@ -24,7 +25,7 @@ class Member(Document):
 		debt = int(self.outstanding_debt)
 
 		if debt < 0:
-			frappe.throw("Outstanding debt cannot be negative")
+			frappe.throw(_("Outstanding debt cannot be negative"))
 
 		if debt > 500:
-			frappe.throw("Outstanding debt cannot exceed KES 500")
+			frappe.throw(_("Outstanding debt cannot exceed KES 500"))
