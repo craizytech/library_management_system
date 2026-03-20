@@ -17,7 +17,7 @@ class Member(Document):
 
 		email: DF.Data
 		full_name: DF.Data
-		outstanding_debt: DF.ReadOnly
+		outstanding_debt: DF.Int
 		phone: DF.Data
 	# end: auto-generated types
 
