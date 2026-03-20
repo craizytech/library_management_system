@@ -42,7 +42,7 @@ class Transaction(Document):
 			frappe.throw(_("Book is out of stock"))
 
 		if member.outstanding_debt > 500:
-			frappe.throw("Member has exceeded the max allowed debt.")
+			frappe.throw(_("Member has exceeded the max allowed debt."))
 
 		if not self.issue_date:
 			self.issue_date = nowdate()
