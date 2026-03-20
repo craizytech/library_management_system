@@ -30,6 +30,6 @@ class Book(Document):
 
 		if available > total:
 			frappe.throw("Available quantity cannot exceed total quantity")
-			
+
 		if available < 0:
 			frappe.throw("Available quantity cannot be negative")
